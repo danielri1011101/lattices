@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[svgnames]{xcolor}
+\usepackage[paperwidth=1000mm, paperheight=1200mm, margin=3cm]{geometry}
+\usepackage{anyfontsize}
+\usepackage{tikz}
+\usepackage{mathpazo}
+\usepackage{multicol}
+\usepackage{blindtext}
+
+\renewcommand{\section}[1]{
+    \begin{tikzpicture}
+            \draw node[fill=yellow!20, text width=0.9\linewidth,
+                text centered, inner sep=30pt, rounded corners=5pt,
+                draw=yellow!80]
+                {
+                        \centering
+                        \textbf{#1}
+                };
+        \end{tikzpicture}
+}
+
+\columnsep=60pt
+\columnseprule=2pt
+
+\begin{document}
+    \begin{center}
+        \fontsize{65}{75}
+        \selectfont
+        \begin{tikzpicture}
+            \draw node[fill=yellow!20, text width=0.95\linewidth,
+                text centered, inner sep=30pt, rounded corners=5pt,
+                draw=yellow!80]
+                {
+                    \begin{minipage}{0.20\textwidth}
+                        \includegraphics[width=0.6\textwidth]{Flag-logo.png}
+                    \end{minipage}%
+                    \begin{minipage}{0.55\textwidth}
+                        \centering
+                        Development of lattice-based abstractions in functional programs\\[1cm]
+                        \fontsize{50}{60}
+                        \selectfont
+                        \textbf{Daniel Barrero${}^1$} \hspace{0.5cm} \textbf{Valérie Gauthier${}^1$} \hspace{0.5cm} \textbf{Nicolás Cardozo${}^1$}\\
+                        \fontsize{40}{50}
+                        \selectfont
+                        ${}^1$Universidad de los Andes\\
+                        \texttt{dr.barrero2562@uniandes.edu.co}
+                    \end{minipage}%
+                    \begin{minipage}{0.25\textwidth}
+                    \centering
+                        \includegraphics[width=0.5\textwidth]{logo_uniandes.jpg}
+                    \end{minipage}
+                    
+                };
+        \end{tikzpicture}
+    \end{center}
+    \vspace{3cm}
+    \begin{multicols*}{3}
+        \fontsize{50}{60}
+        \selectfont
+        \section{Quantum-safe Cryptography}
+        Shor's quantum algorithm, published in 1994, demonstrated that factorization-based cryptography is no longer safe in the scenario of widespread availability of quantum computers.
+
+        \bigskip
+        
+        \[
+    S_{i,j} =
+        \begin{array}{ccccccc}
+           \          & \      & |00\rangle & |01\rangle & |10\rangle & |11\rangle & \ \\
+           |00\rangle & \vline & 1          & 0          & 0          & 0          & \vline\\
+           |01\rangle & \vline & 0          & 1          & 0          & 0          & \vline\\
+           |10\rangle & \vline & 0          & 0          & 1          & 0          & \vline\\
+           |11\rangle & \vline & 0          & 0          & 0          & e^{i\theta_{k-j}}          & \vline
+        \end{array}
+\]
+    This begs the question of quantum-safe encryption protocols
+    \end{multicols*}
+        
+\end{document}
