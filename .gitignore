@@ -1,0 +1,9 @@
+*.log
+*.out
+*.aux
+*.gz
+*.toc
+*.nav
+*.snm
+main.pdf
+phDProjectIsSoCool.pdf
