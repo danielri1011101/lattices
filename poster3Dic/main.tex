@@ -7,6 +7,8 @@
 \usepackage{mathpazo}
 \usepackage{multicol}
 \usepackage{blindtext}
+\usepackage{tikz-cd}
+\usepackage{amsmath}
 
 \renewcommand{\section}[1]{
     \begin{tikzpicture}
@@ -75,7 +77,72 @@
 \]
     There is an \textbf{urgent} need for quantum-safe encryption protocols
     
+    \vspace{1cm}
+
+    %This begs the question of quantum-safe encryption protocols, for which \emph{the more, the better} rule applies.
+
+    %For instance, the SIDH(KE) protocol was broken in 2022 by an efficient classical algorithm. ----> Have this to mention verbally, as I present the poster.
+
+    \bigskip
+
+    % NIST standardization process, and its motivations.
+
+
+
+    In 2015, the NSA announced its transition to quantum-resistant algorithms, in recognition of threats such as:
+
+    \begin{enumerate}
+        \item Harvesting attacks: store today's keys and cyphertexts to break later.
+        \item Forging signatures for old keys.
+        \item Implementing new cryptography at scale takes a long time.
+    \end{enumerate}
+
+     \vspace{0.2cm}
+
+     
+    \includegraphics[width=0.29\textwidth]{nistComputerSecurity.png}
+
+     Thus began NIST's \emph{PQC standardization} process in 2016, with the following algorithms being winners as of August 2024: \emph{CRYSTALS-kyber, CRYSTALS-dilithium, SPHINCS+ and FALCON.}
+
+    \bigskip
+    \bigskip
+    \bigskip
+ 
+    \section{Lattice-based cryptography} Of the 4 selected standards, 3 of them rely on Lattice algebra. There is a concern about optimizing the security-level/runtime ratio. \blindtext
     
+
+    \section{Modern algebra} Advances in mathematics often tend to both simplify and unify seemingly distant theories, as exemplified by the developement of Category Theory since 1945.
+
+    \begin{equation*}
+        \begin{tikzcd}
+            G \arrow{d}{\nu} \arrow{r}{\alpha} & H \arrow{d}{\mu} \\
+            G/G' \arrow{r}{\beta}              & H/H'
+        \end{tikzcd}
+    \end{equation*}
+
+    \bigskip
+
+    Therefore, with a sufficiently general language, we may attempt to simplify sequences of operations such as those of an encryption scheme. One of such languages is that of operads, whose objects represent \emph{operation composition}.
+
+    \includegraphics[width=0.29\textwidth]{fig1Intromss02.png}
+
+    Moreover, the fact that standards such as \emph{CRYSTALS-kyber} rely on module theory suggests that applying the aforementioned algebra can yield advantageous simplifications of the current schemes, at least as far as expressing them is concerned.
+
+    % Maybe mention that modern crypto, such as CRYSTALS-Kyber, use module theory? (M_LWE)
+
+    \section{Functional programming} The implementations of the currently selected protocols are written in unsafe languages, such as C and Python. 
+
+    \bigskip
+    
+    \includegraphics[width=0.22\textwidth]{haskellLogo.png}
+
+    \bigskip
+    
+    Meanwhile, functional languages such as Haskell allow programmers to define category-theoretic abstractions in terms of their type system, in a way that is mathematically clear and natural.
+
+    \includegraphics[width=0.29\textwidth]{fctrHskExl.png}
+
+    In this way, we strive for creating the language SILVER, which shall have the properties of \textbf{expressibility, safety,} and \textbf{maintainability}.
     
     \end{multicols*}    
         
