@@ -9,6 +9,7 @@
 \usepackage{blindtext}
 \usepackage{tikz-cd}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 
 \renewcommand{\section}[1]{
     \begin{tikzpicture}
@@ -42,10 +43,10 @@
                         Development of lattice-based abstractions in functional programs\\[1cm]
                         \fontsize{50}{60}
                         \selectfont
-                        \textbf{Daniel Barrero} \hspace{0.5cm} \textbf{Valérie Gauthier} \hspace{0.5cm} \textbf{Nicolás Cardozo}\\
+                        \textbf{Daniel Barrero${}^1$} \hspace{0.5cm} \textbf{Valérie Gauthier${}^1$} \hspace{0.5cm} \textbf{Nicolás Cardozo${}^1$}\\
                         \fontsize{40}{50}
                         \selectfont
-                        Systems and Computing Engineering  - Universidad de los Andes\\
+                        ${}^1$Universidad de los Andes\\
                         \texttt{dr.barrero2562@uniandes.edu.co}
                     \end{minipage}%
                     \begin{minipage}{0.25\textwidth}
@@ -56,14 +57,12 @@
                 };
         \end{tikzpicture}
     \end{center}
-    \vspace{3cm}
+    \vspace{2cm}
     \begin{multicols*}{3}
         \fontsize{50}{60}
         \selectfont
         \section{Quantum-safe Cryptography}
-        Shor's quantum algorithm, published in 1994, demonstrated that factorization-based cryptography is no longer safe in the scenario of widespread availability of quantum computers.
-
-        \bigskip
+        Shor's quantum algorithm, published in 1994, demonstrated that factorization-based cryptography is no longer safe in the face of large-scale quantum computers.
         
         \[
     S_{i,j} =
@@ -75,15 +74,12 @@
            |11\rangle & \vline & 0          & 0          & 0          & e^{i\theta_{k-j}}          & \vline
         \end{array}
 \]
-    There is an \textbf{urgent} need for quantum-safe encryption protocols
-    
-    \vspace{1cm}
+
 
     %This begs the question of quantum-safe encryption protocols, for which \emph{the more, the better} rule applies.
 
     %For instance, the SIDH(KE) protocol was broken in 2022 by an efficient classical algorithm. ----> Have this to mention verbally, as I present the poster.
 
-    \bigskip
 
     % NIST standardization process, and its motivations.
 
@@ -104,12 +100,29 @@
 
      Thus began NIST's \emph{PQC standardization} process in 2016, with the following algorithms being winners as of August 2024: \emph{CRYSTALS-kyber, CRYSTALS-dilithium, SPHINCS+ and FALCON.}
 
-    \bigskip
-    \bigskip
-    \bigskip
  
-    \section{Lattice-based cryptography} Of the 4 selected standards, 3 of them rely on Lattice algebra. There is a concern about optimizing the security-level/runtime ratio. \blindtext
+    \section{Lattice-based cryptography} Of the 4 selected standards, 3 of them rely on Lattice algebra. The reason why this is so practical is that the underlying operations are matrix multiplication and vector addition, unlike the more sophisticated arithmetic of elliptic curve cryptography, for instance. %There is a concern about optimizing the security-level/runtime ratio. \blindtext
+
+    \includegraphics[width=0.20\textwidth]{latticePicture.png}
+
+    Intuitively, a lattice is a periodic grid in space (of arbitrary dimension). More formally, it is the $\mathbb{Z}$-span of a basis for $\mathbb{R}^n$:
     
+    \fontsize{45}{45}
+    \selectfont
+    \[
+        L(B) = \{a_1\mathbf{b_1} +...+ a_n\mathbf{b_n} | a_i \in \mathbb{Z}, \mathbf{b_i} \in B\}.
+    \]
+
+    \fontsize{50}{60}
+    \selectfont
+
+    Computationally hard problems arise when the dimension of the lattice becomes large, the most essential example being the problem of \emph{finding the shortest vector} (SVP, SVP${}_\gamma$). In the related \emph{learning with errors} (LWE) problem, a public key cryptosystem is given by the relation
+
+    \[
+        \mathbf{b}^t = \mathbf{s}^t \mathbf{A} + \mathbf{e}^t,
+    \]
+
+    where the public key is the random matrix $\mathbf{A}$ and the secret key is the vector $\mathbf{s}$.
 
     \section{Modern algebra} Advances in mathematics often tend to both simplify and unify seemingly distant theories, as exemplified by the developement of Category Theory since 1945.
 
@@ -142,16 +155,16 @@
 
     \includegraphics[width=0.29\textwidth]{fctrHskExl.png}
 
-    In this way, we strive for creating the language SILVER, which shall have the properties of \textbf{expressibility, safety,} and \textbf{maintainability}.
+    In this way, we strive to create the language SILVER, %Safely Implemented, Lattice-based Verifiable Encryption Resource.
+     which shall have the properties of \textbf{expressibility, safety,} and \textbf{maintainability}. The almost verbatim correspondence between mathematical definitions and type/typeclass declarations in purely functional languages makes this possible (c.f. \emph{Curry-Howard correspondence}), together with the type-check requirement for the execution of a program.
+
+     \begin{minipage}{0.15\textwidth}
+         \includegraphics[width=0.5\textwidth]{crypto_0.png}
+     \end{minipage}%
+     \begin{minipage}{0.15\textwidth}
+         \includegraphics[width=0.5\textwidth]{pil-logo.png}
+     \end{minipage}
     
-    \end{multicols*}    
+    \end{multicols*}
         
 \end{document}
-
-\endinput
-
-Poner esto al final
-    \begin{flushright}
-      \includegraphics[width=0.3\columnwidth]{pil-logo}
-      \includegraphics[width=0.1\columnwidth]{crypto_0}
-    \end{flushright}
