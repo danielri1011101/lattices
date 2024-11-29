@@ -11,9 +11,12 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing,calc,tikzmark}
+
 \renewcommand{\section}[1]{
     \begin{tikzpicture}
-            \draw node[fill=yellow!20, text width=0.9\linewidth,
+            \draw node[fill=yellow!80, text width=0.9\linewidth,
                 text centered, inner sep=30pt, rounded corners=5pt,
                 draw=yellow!80]
                 {
@@ -32,13 +35,13 @@
         \fontsize{65}{75}
         \selectfont
         \begin{tikzpicture}
-            \draw node[fill=yellow!20, text width=0.95\linewidth,
+            \draw node[fill=yellow!80, text width=0.95\linewidth,
                 text centered, inner sep=30pt, rounded corners=5pt,
                 draw=yellow!80]
                 {
                     \begin{minipage}{0.20\textwidth}
                         \centering
-                        \includegraphics[width=0.7\textwidth]{Flag-logo.png}\\
+                        \includegraphics[width=0.7\textwidth]{logo_uniandes}\\
 
                         \bigskip
                         \bigskip
@@ -47,8 +50,8 @@
                         \bigskip
                         \bigskip
 
+                        \includegraphics[width=0.7\textwidth]{Flag-logo.png}
                         
-                        \includegraphics[width=0.5\textwidth]{logo_uniandes.jpg}
                         %
                     \end{minipage}%
                     \begin{minipage}{0.55\textwidth}
@@ -56,11 +59,11 @@
                         Quantum-safe lattice-based abstractions in functional programs\\[1cm]
                         \fontsize{50}{60}
                         \selectfont
-                        \textbf{Daniel Barrero${}^1$} \hspace{0.5cm} \textbf{Valérie Gauthier${}^1$} \hspace{0.5cm} \textbf{Nicolás Cardozo${}^1$}\\
+                        \textbf{Daniel Barrero$^*$} \hspace{0.5cm} \textbf{Valérie Gauthier} \hspace{0.5cm} \textbf{Nicolás Cardozo}\\
                         \fontsize{40}{50}
                         \selectfont
-                        ${}^1$Universidad de los Andes\\
-                        \texttt{dr.barrero2562@uniandes.edu.co}
+                        Systems and Computing Engineering  - Universidad de los Andes\\
+                        $^*$\texttt{dr.barrero2562@uniandes.edu.co}
                     \end{minipage}%
                     \begin{minipage}{0.25\textwidth}
                     \centering
@@ -102,24 +105,38 @@
 
     % NIST standardization process, and its motivations.
 
-
-
-    In 2015, the NSA announced its transition to quantum-resistant algorithms, in recognition of threats such as (1) \emph{Harvesting attacks:} store today's keys and cyphertexts to break later, (2) \emph{Forging signatures for old keys}, (3) \emph{Implementing new cryptography at scale takes a long time}.
+    %In 2015, the NSA announced its transition to quantum-resistant algorithms, in recognition of threats such as (1) \emph{Harvesting attacks:} store today's keys and cyphertexts to break later, (2) \emph{Forging signatures for old keys}, (3) \emph{Implementing new cryptography at scale takes a long time}.
+    
+    In recognition of threats such as (1) \emph{Harvesting attacks:} store today's keys and cyphertexts to break later, (2) \emph{Forging signatures for old keys}, (3) \emph{Implementing new cryptography at scale takes a long time}.
     
 
-    The following are the winners as of August 2024:
+    There are 4 main quantum-safe algorithms:
+
+\noindent    
+\begin{tikzpicture}
+    \matrix (m) [matrix of nodes,column 1/.style={anchor=west}]
+    {
+    $\bullet$CRYSTALS-kyber \\
+    $\bullet$CRYSTALS-dilithium \\
+    $\bullet$FALCON \\
+    $\bullet$SPHINCS+ \\
+    };
+
+    \draw [decoration={brace,amplitude=0.5em},decorate,ultra thick,black]
+        (m-1-1.north -| m.east) --  node[right=0.5em]{lattice-based} (m-3-1.south -| m.east); 
+\end{tikzpicture}
     
-    \begin{itemize}
-        \item CRYSTALS-kyber${}^*$
-        \item CRYSTALS-dilithium${}^*$
-        \item FALCON${}^*$
-        \item SPHINCS+
-    \end{itemize}
+%    \begin{itemize}
+%        \item CRYSTALS-kyber${}^*$
+%        \item CRYSTALS-dilithium${}^*$
+%        \item FALCON${}^*$
+%        \item SPHINCS+
+%    \end{itemize}
 
  
     \section{Lattice-based cryptography}\\
     
-    Lattices offer the possibility of grounding cryptography on operations as simple as matrix multiplication and vector addition, where a lattice is a periodic grid in space (of any dimension), defined as the $\mathbb{Z}$-span of a basis for $\mathbb{R}^n$:
+    Lattices offer the possibility of grounding cryptography on simple operations as matrix multiplication and vector addition, where a lattice is a periodic grid in space (of any dimension), defined as the $\mathbb{Z}$-span of a basis for $\mathbb{R}^n$:
     
     \fontsize{45}{45}
     \selectfont
@@ -147,46 +164,55 @@
     the public key is the random matrix $\mathbf{A}$ and the secret key is the vector $\mathbf{s}$. Recovering such key from the cyphertext $\mathbf{b}$ is as hard as solving the \emph{shortest vector problem} (SVP, SVP${}_\gamma$), which is known to be NP-hard.\\
 
     \section{Current Shortcomings}
-
-    The best PQC algorithm so far is \emph{CRYSTALS-kyber}, which in a chat encryption scenario is known to
-
+ 
+ \bigskip 
+ 
+PQC algorithm are known to have a :
     \begin{itemize}
-        \item Increase runtime by a factor of 2.3
-        \item Increase energy consumption by 3.1
-        \item Have 70 times more data overhead
+        \item \textbf{{\color{red} 2.3x run-time}} overhead
+        \item \textbf{{\color{red} 3.1x energy}} consumption increase
+        \item \textbf{{\color{red} 70x more data}} overhead
     \end{itemize}
 
     These complications are due to internal hashing and \emph{discrete Fourier transforms} (DFTs), which occur iteratively in the encryption process.\\
 
+To \textbf{{\color{ForestGreen} improve performance}} and \textbf{{\color{ForestGreen} alleviate the complexity}} of building quantum-safe algorithms we proposed to use \textbf{advanced algebra concepts} from a \textbf{programming language perspective}.
+
+    \bigskip
     \section{Operad-based cryptography}
    
     \bigskip
 
-     We may therefore attempt to simplify such sequences of operations. For this we will use the theory of \emph{operads}, whose objects represent \emph{operation composition}.
-
-    \includegraphics[width=0.29\textwidth]{fig1Intromss02.png}
-
-    The fact that the best standards rely on property-preserving transformations (a.k.a. homomorphisms) to simplify computational complexity encourages this approach even further.
-
-    % Maybe mention that modern crypto, such as CRYSTALS-Kyber, use module theory? (M_LWE)
-
+     The crypto-standard rely on property-preserving transformations (i.e., homomorphisms) to simplify computational complexity 
+     
+     \includegraphics[width=0.29\textwidth]{fig1Intromss02.png}
+     
+     Our hypothesis is that sequences of operations can be further simplified using the theory of \emph{operads}, whose objects represent \emph{operation composition}.
+    
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
+    
     \section{A declarative language for quantum-safe cryptography} 
 
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+
     \begin{itemize}
-        \item The implementations of today's best protocols are written in languages such as C, which lack the expressiveness to express the operations naturally. This adds computational overhead and hides the intrinsic complexity of the scheme.
-        \item Functional languages such as Haskell allow programmers to define category-theoretic abstractions in a way that is mathematically clear and natural. 
-        
-        \item[] \includegraphics[width=0.29\textwidth]{toyOpds.png}
-        
-        \item In this project, we create the language SILVER, %Safely Implemented, Lattice-based Verifiable Encryption Resource.
-     which will be \textbf{safe, expressive, and maintainable}. This will follow from the almost verbatim correspondence between mathematical definitions and type/typeclass declarations in our purely functional language (c.f. \emph{Curry-Howard correspondence}), together with the type-check requirement for the execution of a program.
+        \item Cryptography protocols are implemented in languages such as C, which lack the expressiveness for algebraic operations or composition. This adds computational overhead and hides the intrinsic complexity of the scheme.
+        \item Functional languages (e.g., Haskell) allow programmers to define category-theoretic abstractions appropriate for a mathematically \textbf{clear and natural operation composition}. 
+        \bigskip
+        \item[] \begin{center} \includegraphics[width=0.3\textwidth]{toyOpds.png} \end{center}
+        \bigskip
+        \item In this project, we propose the \texttt{\textbf{SILVER}} language. %Safely Implemented, Lattice-based Verifiable Encryption Resource.
+    Following the correspondence between mathematical definitions and type/typeclass declarations in our purely functional language, together with the use of a sound type specification system for program execution to create a \textbf{simple, safe, expressive, performant}, and \textbf{maintainable} programming language for quantum-safe cryptography.
     \end{itemize}
     
-    
-     % \flushright
-     %     \includegraphics[width=0.22\textwidth]{pil-logo.png}
-
-     
     
     \end{multicols*}
         
