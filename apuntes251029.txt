@@ -1,0 +1,17 @@
+-- High-level description of HawkKeyGen:
+
+\[
+	ENSURE (B \in GL_2(R_n)) by
+		Sample (f, g \in R_n) by
+			f[i], g[i] <-- Bin(\eta) i.i.d.
+		if (!(f, g).conditions) RESTART
+			// Maybe checking some NTRU input conditions 
+		r <-- NTRUsolve(f, g)
+		if (r is null) RESTART
+		(F, G) <-- r
+		B <-- [[f, F][g, G]]
+		Q <-- Adj(B) * B
+		if (!(Q, B).KeyGenConditions) RESTART
+		hpub <-- H(Q)
+		return (pk, sk) <-- (Q, (B, h))
+\]
