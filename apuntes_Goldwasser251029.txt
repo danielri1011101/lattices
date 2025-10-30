@@ -1,0 +1,36 @@
+[c.f. Why is hawk a dss?]
+
+-- In the paper world, the ability to sign is private and the ability to verify is
+public; as in Armando and Betty writing letters to each other and respectively forging
+and recognizing each other's handwriting and personal end-of-letter signatures.
+
+-- A digital signature is a certificate that Armando provides to all of his
+correspondents that a message supposed to be his is in fact his own. More specifically,
+Armando has a pair of keys $(u_A, v_A)$ where $u_A$ is public and $v_A$ is private such
+that if Betty recieves a message $M$ signed with $\sigma$, she can use $u_A$ to verify
+that Armando forged $\sigma$ with $v_A$.
+
+-- How can a malicious agent such as Daniel try to screw up the Armando <--> Betty
+channel? He could try masking his $u_D$ as Armando's public key, and therefore trick
+Betty into believing that a message $M'$ signed with $\sigma'$ is a message by Armando,
+when in reality $M'$ was written by Daniel and $\sigma'$ was forged with $v_D$.
+Therefore, a weak point of signature schemes is the public key distribution.
+
+-- A solution to this is the existence of a trusted public key administrator, such as
+Wilson, and the idea is that a public key such as Armando's is given to Betty alongside
+a certificate $c$ that Wilson is the one providing Betty with $u_A$. Then what everyone
+in the network needs is a personal copy of Wilson's public key $u_W$, and this makes
+Daniel's supplantation of Armando more difficult, because he would have to either steal
+Wilson's private key $v_W$ or replace Wilson altogether for everyone. This last option
+is arguably the worst, because he would have to hack everyone's computers and replace
+their personal copy $u_W$ with his malicious $u_{W'}$, aside from getting rid of Wilson
+without anyone (except perhaps his friends) knowing it.
+
+-- Then, in her correspondence with Armando, Betty recieves $(M, \sigma, (u_A, c))$ and
+uses her $u_W$ to verify that $c$ was forged with $v_W$ and so Wilson was the one who
+provided her with $u_A$, which she then uses to verify that $\sigma$ was forged with
+$v_A$ and hence $M$ is a message from Armando.
+
+-- According to prof. Goldwasser's book, making everyone have a personal copy of $u_W$
+makes the protocol safer and decentralized. This seems to me in accordance with the
+narrative I figured out above.
