@@ -1,0 +1,14 @@
+-I- What is omSVP about?
+-II- How does it relate to hawk's math, specifically $K_n/R_n$?
+
+-*- If the analogous pair of questions is easier to answer for smLIP, then prepare that.
+
+-- According to ss 1.0.1, omSVP and smLIP are to be found in 2 or 6.
+
+-*- ss 2 consists of high-level pseudocode of the main hawk algorithms.
+
+-- 6.2, 6 linear, ---break--- 2 linear.
+
+-- Can any cm field be (algorithmically) recovered as a cyclotomic field?
+
+-- Is the ring of integers $R$ of a given cm $K$ also algorithmically recoverable?
