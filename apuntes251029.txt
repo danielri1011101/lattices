@@ -1,3 +1,24 @@
+-- Hawk is an entry point to understand lattice-based cryptography, the motivation for
+reading its spec is not to understand it in detail, because my work won't be based on
+that machine, at least not necessarily at this point.
+
+-- Hawk uses lattice-related math to make secure digital signatures---where the
+definition of "secure" is always context-dependent---. Why is Hawk a digital signature
+scheme? Why is Hawk considered "safe" and "efficient"? How much of this safety and
+efficiency is due to the underlying lattice math, and by what means? Namely, how do the
+security measures depend on the math? Is there any relevant non-lattice math which is
+importantly interacting to provide security? These are the guiding questions for my
+reading of the Hawk spec.
+
+-I- Why is hawk a digital signature scheme?
+
+-II- Why is hawk considered a safe and efficient dss?
+
+-III- How do its safety and efficiency depend on the (lattice) math?
+
+-IV- Is there any relevant non-lattice math that interacts with the lattice math to
+provide security and efficiency, and if so, how does that happen?
+
 -- High-level description of HawkKeyGen:
 
 \[
