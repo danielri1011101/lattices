@@ -1,0 +1,23 @@
+[REVIEW]
+
+-- Last time: high-level algorithm for key generation.
+
+-- Started reading ss 6.2 about omSVP.
+
+-- average case omSVP is the problem considered.
+
+-?- Idea of omSVP is to find a non-trivial new short vector. Short with respect to
+a Q-norm, where Q is a sampled positive-definite Hermitian matrix of rank r with
+coefficients in K, a cm field given by
+	K= QQ[X]/<X^n + 1>,
+where QQ denotes the field of rational numbers and n= 2^m.
+The parameters r and m are functions of the security parameter.
+The new short vector xx of rank r is to have coefficients in
+	R= ZZ[X]/<X^n + 1>,
+the ring of integers of K.
+The challenge is to accomplish it from data of the form
+J <--iid-- D_{\sigma, Q}
+where D denotes the discrete Gaussian distribution.
+The adversary can use the vector J (which he can iteratively sample) together with 
+the fixed data Init= <Q, \mu_K, L, \sigma> where \mu_K is the set of roots of unity
+of K.
