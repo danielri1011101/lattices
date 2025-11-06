@@ -1,0 +1,17 @@
+High level HawkSign
+
+require: A message m and a secret key
+	(B, hpub)
+		// (g) Precondition/Input
+ensure: A signature sig = (salt, s1) where
+	salt \in {0, 1}^saltlen_bit and s1 \in Rn
+		// (g) Postcondition
+
+M <- H(m || hpub)
+salt <- Rnd(saltLen_bit)
+hh <- H(M || salt)
+tt <- Bhh mod 2
+xx <- D(2ZZ^(2n) + tt, sigma_sign)
+if (norm(xx)^2 > 4*sigma_verify^2*(2n)) RESTART
+ww <- B^{-1}x
+s <- H(w || h)
