@@ -1,0 +1,28 @@
+-- Perfect completeness: any element of R1 that the adversary can sample validly
+reduces to an element of R2.
+
+-- Public reducibility: The IO behaviour of the adversaries is publicly traceable.
+
+-- Knowledge composition theorem from KP23 can help in the conceptual understanding
+of reductions of knowledge.
+
+-*- How do they achieve a RoK with their tools?
+
+-- Keywords (knowledge) "soundness", (perfect) "completeness", (public)
+"reducibility" in pages 14-41.
+
+-- Instance-witness relations.
+
+-- The key requirement is that "There are no witnesses for x2 unless there's a
+witness for x1." More formally, witnesses for x1 can be computationally extracted
+from the prover if it can provide witnesses for x2.
+
+-- x1= "Soy hijo de Neira Gladys Rosero Niño". w1= miCedula, que contiene que mis
+apellidos son "Barrero Rosero". Testigos adicionales pueden ser por ejemplo el
+certificado legal del matrimonio de Rigoberto Barrero con la susodicha.
+
+-- Ejemplos del drama de Ecomoda durante Betty la fea para entender la utilidad de
+estos conceptos.
+
+-- Multilinear algebra and multivariate polynomials. k[X] (x) k[Y] ~ k[X, Y].
+Tensors given by products of linear transformations, etc.
