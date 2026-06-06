@@ -1,6 +1,0 @@
-
--- Ajtai
-
--- Norm reduction
-
--- Sumcheck

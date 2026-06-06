@@ -1,0 +1,3 @@
+-- Cyclotomic utilities: mod q arithmetic, mod X^d + 1 algebra, etc.
+-- First done naïvely for conceptual proof, then do it well using
+-- Cyclotomic.hs Haskell library.
