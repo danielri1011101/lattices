@@ -1,0 +1,2 @@
+-- Sumcheck protocol for the extractor algorithm. Its input is a batched
+-- proof of knowledge 
